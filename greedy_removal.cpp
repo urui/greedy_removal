@@ -7,6 +7,58 @@
 using namespace std;
 typedef pair<int,int> edge;
 
+
+/**
+* split関数
+* @param string str 分割したい文字列
+* @param string delim デリミタ
+* @return list<string> 分割された文字列
+*/
+list<string> split(string str, string delim)
+{
+    list<string> result;
+    int cutAt;
+    while( (cutAt = str.find_first_of(delim)) != str.npos )
+    {
+        if(cutAt > 0)
+        {
+            result.push_back(str.substr(0, cutAt));
+        }
+        str = str.substr(cutAt + 1);
+    }
+    if(str.length() > 0)
+    {
+        result.push_back(str);
+    }
+return result;
+}
+
+vector < pair<int,int> > pairread()
+ {
+  ifstream ifs("ibarakinput");
+  string str;
+
+    if(ifs.fail()) {
+      cerr << "File do not exist.\n";
+	           }
+  vector < pair<int,int> > reader;
+  string a;
+  string b;
+
+    while(getline(ifs,str)){
+      list<string> strList = split(str, ",");
+      string a = strList.front();
+      string b = strList.back();
+      cout << "a:" << a << "   b:" << b << endl;
+      reader.push_back(make_pair(atoi(a.c_str()),atoi(b.c_str())));
+      strList.clear();
+	}
+
+  ifs.close();
+  return reader;
+}
+
+
 vector<edge> greedy_removal(int n, vector<edge> g){
   vector<int> deg(n,0);
   vector< list<int> > adj_list(n);
