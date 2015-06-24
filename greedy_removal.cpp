@@ -115,15 +115,7 @@ vector<edge> greedy_removal(int n, vector<edge> g){
 }
 
 int main(){
-  int n,m;
-  cin >> n >> m;
-  vector<edge> g;
-  for(int i=0;i<m;i++){
-    int a, b;
-    cin >> a >> b; a--; b--;
-    g.push_back( make_pair(a,b) );
-  }
-
+  vector<edge> res = pairread();
   cout << n << " " << m << endl;
   vector<edge> res = greedy_removal(n,g);
   for(edge e : res){
