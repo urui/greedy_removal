@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<fstream>
 #include<cassert>
 #include<algorithm>
 #include<set>
@@ -49,8 +50,7 @@ vector < pair<int,int> > pairread()
       list<string> strList = split(str, ",");
       string a = strList.front();
       string b = strList.back();
-      cout << "a:" << a << "   b:" << b << endl;
-      reader.push_back(make_pair(atoi(a.c_str()),atoi(b.c_str())));
+      reader.push_back(make_pair(atoi(a.c_str())-1,atoi(b.c_str())-1));
       strList.clear();
 	}
 
@@ -110,13 +110,17 @@ vector<edge> greedy_removal(int n, vector<edge> g){
     if(deg[u])frontier.insert(u);
     else deg[u]--;
   }
-
+  cout << "calcurated" << endl; 
   return res;
 }
 
 int main(){
-  vector<edge> res = pairread();
-  cout << n << " " << m << endl;
+  int n;
+  cout << "input nodenumber" << endl;
+  cin >>n;
+  cout << "pairread" << endl;
+  vector<edge>g = pairread();
+  cout << "load pairread" << endl;
   vector<edge> res = greedy_removal(n,g);
   for(edge e : res){
     cout << e.first+1 << " " << e.second+1 << endl;
